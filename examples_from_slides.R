@@ -3,6 +3,7 @@
 
 library(tidyverse)
 library(lubridate)
+library(reshape2)
 df <- read_csv('nordic_data.csv')
 
 head(df)
@@ -76,63 +77,59 @@ df_example_8 <- df %>%
 
 
 ## Visualizations
-# Visualization 1
+# Visualization 1 - geom_line
+melted_df_example_7 <- melt(df_example_7, id="year") 
 
-########### OLD ##############
-df_example_7 <- df %>%
-  filter(is.na(Critic.Score) == FALSE,
-         is.na(User.Score) == FALSE) %>%
-  mutate(difference_in_score = User.Score - Critic.Score) %>%
-  arrange(desc(difference_in_score)) %>%
-  select(Game, difference_in_score, Total.Sales, User.Score, Critic.Score)
+plot_1 <- ggplot(data = melted_df_example_7, 
+                 aes(x = year, y = value, color = variable)) +
+           geom_line()
 
-p <- ggplot(data = df_example_7, mapping = aes(x = Critic.Score, y = User.Score, size = Total.Sales)) 
-p <- p + geom_point() 
-p <- p + theme_bw()
-p <- p + labs(x = 'Critic Score', y = 'User Score', title = 'How does the critic score compare to user score for top sold games?', size = 'Total Sales')
-p
+plot_1 <- plot_1 + theme_bw()
+plot_1 <- plot_1 + labs(x = 'Year', 
+                        y = 'Life Expectancy Ratio', 
+                        title = '')
+
+plot_1
 
 # Visualization 2
-df_example_9 <-
-  df %>% 
-  filter(Console %in% c('PS', 'PS2', 'PS3', 'PS4'), Release.Year >= 1994) %>% 
-  group_by(Release.Year) %>% 
-  summarise(Total.Sales = sum(Total.Sales, na.rm = T)) 
+plot_2 <- ggplot(df_example_2, 
+                       aes(x = year, y = avg_population_female)) +
+          geom_point(color = 'purple') + 
+          geom_line(size = 5, alpha = 0.3)
 
-df_example_9
+plot_2 
+#<- plot_2 +
+#scale_y_continuous(limits = c())
 
-p <- ggplot(data = df_example_9, mapping = aes(x = Release.Year, y = Total.Sales)) 
-p <- p + geom_line()
-p <- p + geom_point()
-p <- p + theme_bw()
-p <- p + labs(x = 'Release Year', y = 'Total Sales', title = 'Total PlayStation Games Sales over Years')
-p 
+# Visualization 3 - geom_bar - stacked
+melted_df_example_3 <- melt(df_example_3, id="year") 
 
-# Visualization 3 
-df_example_10 <-
-  df %>% 
-  filter(Console %in% c('PS', 'PS2', 'PS3', 'PS4'), Release.Year >= 1994) %>% 
-  group_by(Release.Year, Console) %>% 
-  summarise(Total.Sales = sum(Total.Sales, na.rm = T)) 
+plot_3 <- ggplot(data = melted_df_example_3, 
+                 aes(x = year, y = value)) +
+        geom_bar(stat = 'identity', aes(fill = variable))
 
-df_example_10
+plot_3 <- plot_3 + 
+          theme_gray() +
+          labs(x = 'Year', 
+               y = 'Total Births Per Woman', 
+               title = 'Fertility Rate Total Births Per Woman Group by Country',
+               fill = 'Country')
 
-p <- ggplot(data = df_example_10, mapping = aes(x = Release.Year, y = Total.Sales, color = Console)) 
-p <- p + geom_line()
-p <- p + geom_point()
-p <- p + theme_bw()
-p <- p + labs(x = 'Release Year', y = 'Total Sales', title = 'How many PlayStation games (by models) are sold over the years?', color = 'Console Type')
-p 
+plot_3
 
-# Visualization 4
-df_example_11 <- 
-  df_example_8 %>% 
-  gather(key = region, value = sales, NA.Sales.all.games, Japan.Sales.all.games, PAL.Sales.all.games)  
 
-p <- ggplot(data = df_example_11, mapping = aes(x = reorder(Console, sales), y = sales, fill = region)) 
-p <- p + geom_col()
-p <- p + theme_bw() 
-p <- p + coord_flip()
-p <- p + labs(x = 'Console', y = 'Total Sales', title = 'How many games are sold (by console type) in different regions?', fill = 'Region')
-p
+# Visualization 3 - geom_bar - side by side 
+plot_4 <- ggplot(data = melted_df_example_3, 
+                 aes(x = year, y = value)) +
+          geom_bar(stat="identity",
+                   aes(fill = variable), width=.5, position = "dodge")  
+          
 
+
+plot_4 <- plot_4 +
+          labs(x = 'Year', 
+               y = 'Total Births Per Woman', 
+               title = 'Fertility Rate Total Births Per Woman Group by Country',
+               fill = 'Country')
+
+plot_4
