@@ -1,0 +1,326 @@
+Introduction to tidyverse
+========================================================
+author: Anastasia Kuprina & Hazel Kavili
+date: 09/06/2019
+autosize: true
+
+<style>
+
+.tiny-text p {
+  font-size: 5px; /*does not fucking work*/
+}
+.reveal .slides{
+    height: 95% !important;  /* or other width */
+}
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+}
+.reveal p, .reveal li, .reveal ul {
+  font-size: 0.9em;
+}
+.small-code pre code {
+  font-size: 0.9em;
+}
+</style>
+
+Who are we?
+========================================================
+
+![Anastasia](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/seriously-portrait2016_Anastasia-1-300x330.jpg)
+
+- Has been doing data analysis since late 2016
+- Knows SQL, R and Python. Studying more Python & stats
+- Tries to improve diversity and inclusivity of tech by organising regular codebar workshops and other events
+
+***
+
+![Hazel](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/Hazel-Kavili-seriously-highres-2-300x330.jpg)
+
+- Write stuff here
+- and here
+- and here too
+
+
+Why tidyverse?
+========================================================
+<br/>
+- A huge community supported by RStudio themselves
+- Help and support in social media
+- tidytuesday
+
+***
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/tidyverse_popularity.png" width=1000px>
+</div>
+
+Some interesting tidyverse learning & usage data
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/survey_responses.png" width=1000px>
+</div>
+
+Data analysis workflow
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/process.png" width=900px>
+</div>
+
+
+Data analysis workflow: tidyverse version
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/tidyverse_map.png" width=1000px>
+</div>
+
+
+Data analysis workflow in our daily work
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/seriously_map.png" width=800px>
+</div>
+
+Let's get to it!
+========================================================
+
+**Step 1**: Start up a new project in RStudio (File -> New project and follow the instructions)
+
+**Step 2**: Make sure to install packages:
+
+```{r eval=FALSE}
+install.packages('tidyverse', 'lubridate')
+```
+Note: if the package installer asks you whether or not to install with compilcation, respond 'n' for 'no'.
+
+**Step 3**: Create a new script (File -> New script)
+
+**Step 4**: Load libraries into the session & fetch the data:
+
+```{r}
+library(tidyverse)
+library(lubridate)
+
+df <- readr::read_csv('https://raw.githubusercontent.com/kuprinaga/R-ladies-workshop/master/nordic_data.csv')
+```
+
+
+Reading data in
+========================================================
+
+
+```{r eval=FALSE}
+readr::read_csv('example.csv')
+readr::read_tsv('example.tsv')
+readr::read_table('example.txt')
+```
+<br/>
+Why use readr?
+- progress bar
+- faster for large files
+- outputs exactly what the column types are 
+- can automatically parse data types
+- outputs a tibble (tidy dataframe)
+
+
+Kind of a side note
+========================================================
+### Why tibble?
+- printing (shows only the first 10 rows, and all the columns that fit on screen + datatype)
+- Tibbles are strict about subsetting: <br/>
+-> [] always returns another tibble, <br/>
+-> [[]] always returns a vector
+- Tibbles do not return partial names
+- Strings are strings, not factors
+
+
+Let's learn more about the data
+========================================================
+class: small-code
+```{r}
+summary(df)
+```
+
+========================================================
+class: small-code
+```{r}
+head(df, 10)
+```
+
+========================================================
+class: small-code
+```{r}
+str(df)
+```
+
+
+Let's learn more about the data: tidyverse way
+========================================================
+class: small-code
+```{r}
+glimpse(df)
+```
+
+
+How to manipulate data: tidyverse way
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/tidy_verbs.png" height=600>
+</div>
+
+
+Compare to the Base R way
+========================================================
+```{r eval=FALSE}
+df[ , c('year', 'Country_Code')]
+
+df %>% select(year, Country_Code)
+```
+
+Why use pipes?
+========================================================
+Here are two pieces of code that return exactly the same thing. What do you think about their readability?
+
+
+```{r eval=FALSE}
+# piped way
+df %>%
+  group_by(Country_Name) %>%
+  summarise(Life_expectancy = max(Life_expectancy_at_birth_female_years_)) %>%
+  arrange(Life_expectancy)
+```
+
+```{r eval=FALSE}
+# same functions, no pipes
+arrange(summarise(group_by(df, Country_Name), Life_expectancy = max(Life_expectancy_at_birth_female_years_),Life_expectancy))
+```
+
+<div class = 'img-block' align="right">
+<img src="https://pics.me.me/could-you-not-memeful-com-via-9gag-com-14187083.png" height=200px>
+</div>
+
+
+Let's get to it!
+========================================================
+class: small-code
+### Step 0 - let's look at the data again
+#### Our question: what is the maximum life expectancy for women across all years?
+
+```{r}
+df %>%
+  glimpse()
+```
+
+Exercise 1, step 1
+========================================================
+
+```{r}
+df %>%
+  group_by(Country_Name)
+```
+
+Exercise 1, step 2
+========================================================
+
+```{r}
+df %>%
+  group_by(Country_Name) %>%
+  summarise(Life_expectancy = max(Life_expectancy_at_birth_female_years_, na.rm = TRUE))
+```
+
+
+Exercise 1, step 3 + assignment
+========================================================
+```{r}
+df_example_1 <- df %>%
+  group_by(Country_Name) %>%
+  summarise(Life_expectancy = max(Life_expectancy_at_birth_female_years_, na.rm = TRUE)) %>%
+  arrange(desc(Life_expectancy))
+```
+
+
+Exercise 2, step 0
+========================================================
+class: small-code
+### Let's look at the data
+#### Our new question is: what is the average female population over time?
+```{r}
+df %>%
+  head()
+```
+
+Exercise 2, step 1
+========================================================
+
+```{r}
+df %>%
+  group_by(year)
+```
+
+Exercise 2, step 2
+========================================================
+
+```{r}
+df %>%
+  group_by(year) %>%
+  summarise(avg_population_female = mean(Population_female_of_total_))
+```
+
+Exercise 2, step 3 + assignment
+========================================================
+
+```{r}
+df_example_2 <- df %>%
+  group_by(year) %>%
+  summarise(avg_population_female = mean(Population_female_of_total_)) %>%
+  arrange(desc(year))
+```
+
+
+
+A bit more theory: tidy data concept
+========================================================
+
+<div class = 'img-block' align="center">
+<img src="https://cdn-images-1.medium.com/max/1600/1*_64CzT-YicPKgCEJsOi6_A.png" >
+
+<img src="https://d33wubrfki0l68.cloudfront.net/8350f0dda414629b9d6c354f87acf5c5f722be43/bcb84/images/tidy-8.png" >
+</div>
+
+
+
+spread() & gather()
+========================================================
+class: small-code
+### tidyverse (tidyr) way
+```{r echo=F}
+phones_data_wide <- cbind(as_tibble(WorldPhones), rownames(WorldPhones)) %>%
+  rename(year = `rownames(WorldPhones)`)
+
+phones_data_long <- cbind(as_tibble(WorldPhones), rownames(WorldPhones)) %>%
+  rename(year = `rownames(WorldPhones)`) %>% 
+  gather(country, number, -year)
+```
+```{r}
+phones_data_wide %>%
+  head(3)
+
+phones_data_wide %>% gather(country, number, -year) %>% head(5)
+
+phones_data_long %>% spread(country, number) %>% head(3)
+```
+
+
+A bit more explanation
+========================================================
+### gather()
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/gather.png" >
+</div>
+### spread()
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/spread.png" >
+</div>
+
+
+
+
