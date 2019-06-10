@@ -44,14 +44,13 @@ df_example_3 <- df %>%
 
 # mutate examples start here
 df_example_4 <- df %>%
-  filter(year == year(Sys.Date())-2) %>%
+  select(year, Country_Name, Population_ages_15_64_female, Population_ages_15_64_total, Population_ages_15_64_male) %>%
+  na.omit() %>%
+  filter(year == max(year)) %>%
   mutate(population_female_from_all = Population_ages_15_64_female/Population_ages_15_64_total,
-         population_male_from_all = Population_ages_15_64_male/Population_ages_15_64_total) %>%
-  select(Country_Name, population_female_from_all, population_male_from_all)
-
+         population_male_from_all = Population_ages_15_64_male/Population_ages_15_64_total) 
 
 df_example_5 <- df %>%
-  group_by(Country_Name) %>%
   select(year, Country_Name, Inflation_consumer_prices_annual_) %>%
   spread(Country_Name, Inflation_consumer_prices_annual_) 
 
@@ -68,7 +67,7 @@ df_example_7 <- df %>%
   select(life_exp_ratio, year, Country_Name, Life_expectancy_at_birth_male_years_,Life_expectancy_at_birth_female_years_) %>%
   select(-Life_expectancy_at_birth_male_years_, -Life_expectancy_at_birth_female_years_) %>%
   spread(Country_Name, life_exp_ratio) %>%
-  top_n(10, year)
+  top_n(5, year)
 
 
 df_example_8 <- df %>%

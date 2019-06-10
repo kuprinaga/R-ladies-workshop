@@ -161,19 +161,38 @@ glimpse(df)
 ```
 
 
-How to manipulate data: tidyverse way
+How to manipulate tidy-style
 ========================================================
 <div class = 'img-block' align="center">
 <img src="./pics_for_presentation/tidy_verbs.png" height=600>
 </div>
 
 
-Compare to the Base R way
+Compare to the Base R way: select
 ========================================================
 ```{r eval=FALSE}
 df[ , c('year', 'Country_Code')]
 
-df %>% select(year, Country_Code)
+df %>% 
+  select(year, Country_Code)
+```
+
+
+Compare to the Base R way: summarise by group
+========================================================
+class:small-code
+```{r eval=FALSE}
+head(aggregate(df$Population_female_of_total_,
+          by = list(df$year),
+          FUN = mean),
+     3)
+
+tapply(df$Population_female_of_total_, df$year, FUN=mean)
+
+df %>% 
+  group_by(year) %>% 
+  summarise(avg_pop = mean(Population_female_of_total_)) %>%
+  head(3)
 ```
 
 Why use pipes?
@@ -322,5 +341,483 @@ A bit more explanation
 </div>
 
 
+Exercise 3, step 0
+========================================================
+class: small-code
+### Let's look at the data
+#### What has fertility rate been like in the past 5 years in each country?
+
+```{r}
+df %>%
+  head()
+```
 
 
+Exercise 3, step 1
+========================================================
+class: small-code
+```{r}
+df %>% 
+  top_n(20, year)
+```
+#### Why?
+
+
+Side note: top_n()
+========================================================
+class: small-code
+incremental: true
+```{r}
+df %>% 
+  top_n(20, year) %>% 
+  pull(year)
+```
+#### Things to note:
+- top_n() returning multiple values of year - why?
+- pull() versus select()
+
+```{r}
+df %>% arrange(year) %>%
+  top_n(20,year) %>%
+  select(year, Country_Code)
+
+```
+
+
+
+Continuation: top_n()
+========================================================
+class: small-code
+```{r}
+df %>% arrange(year) %>%
+  top_n(20,year) %>%
+  select(year, Country_Code) %>% head(5)
+```
+
+```{r}
+df %>% 
+  select(Country_Name, Fertility_rate_total_births_per_woman_, year) %>%
+  spread(Country_Name, Fertility_rate_total_births_per_woman_) %>%
+  top_n(5, year)
+```
+
+
+
+Exercise 3, step 1
+========================================================
+```{r}
+df %>% 
+  top_n(20, year) %>% 
+  group_by(Country_Name, year)
+```
+
+
+Exercise 3, step 2
+========================================================
+class:small-code
+```{r}
+ df %>% 
+  top_n(20, year) %>% 
+  group_by(Country_Name, year) %>%
+  select(Fertility_rate_total_births_per_woman_) 
+```
+Things to note:
+- top_n() hacking
+- selecting just one column still selects that column + groups
+
+
+Exercise 3, step 3 + assignment
+========================================================
+class:small-code
+incremental:true
+
+#### Time to try out spread()
+##### Before spread():
+```{r}
+## old data:
+ df %>% 
+  top_n(20, year) %>% 
+  group_by(Country_Name, year) %>%
+  select(Fertility_rate_total_births_per_woman_) %>% head(3)
+```
+
+##### After spread():
+```{r}
+## spread data:
+df %>% 
+  top_n(20, year) %>% 
+  group_by(Country_Name, year) %>%
+  select(Fertility_rate_total_births_per_woman_) %>%
+  spread(Country_Name, Fertility_rate_total_births_per_woman_)
+```
+
+
+
+New verb: mutate()
+========================================================
+incremental:true
+
+<div class = 'img-block' align="center" style = "z-index:0;position:absolute;top:100px;margin-left:auto;margin-right:auto;">
+<img src="./pics_for_presentation/tidy_verbs.png" height=800>
+</div>
+
+
+
+Compare to the Base R way: simple mutate (no groups)
+========================================================
+class:small-code
+```{r eval=FALSE}
+
+df$ratio <- df$Life_expectancy_at_birth_male_years_ / df$Life_expectancy_at_birth_female_years_
+head(df$ratio, 3)
+
+df %>% 
+  mutate(ratio = Life_expectancy_at_birth_male_years_ /
+            Life_expectancy_at_birth_female_years_) %>%
+  select(ratio) %>%
+  head(3)
+```
+
+
+Exercise 4, step 0
+========================================================
+class:small-code
+### Let's look at the data
+#### What is male/female population share is like for the last available year?
+
+```{r}
+df %>% 
+  filter(year == max(year)) 
+
+```
+
+Exercise 4, step 1
+========================================================
+class:small-code
+
+```{r}
+df %>%
+  select(year, Country_Name, Population_ages_15_64_female, Population_ages_15_64_total, Population_ages_15_64_male) %>%
+  na.omit() 
+
+```
+
+
+
+Exercise 4, step 2
+========================================================
+class:small-code
+
+```{r}
+df %>%
+  select(year, Country_Name, Population_ages_15_64_female, Population_ages_15_64_total, Population_ages_15_64_male) %>%
+  na.omit() %>%
+  filter(year == max(year))
+```
+
+
+Exercise 4, step 3
+========================================================
+class:small-code
+
+```{r}
+df %>%
+  select(year, Country_Name, Population_ages_15_64_female, Population_ages_15_64_total, Population_ages_15_64_male) %>%
+  na.omit() %>%
+  filter(year == max(year)) %>%
+  mutate(population_female_from_all = Population_ages_15_64_female/Population_ages_15_64_total,
+         population_male_from_all = Population_ages_15_64_male/Population_ages_15_64_total)
+```
+
+
+Exercise 4, step 4 - assignment
+========================================================
+class:small-code
+
+```{r}
+df_example_4 <- df %>%
+  select(year, Country_Name, Population_ages_15_64_female, Population_ages_15_64_total, Population_ages_15_64_male) %>%
+  na.omit() %>%
+  filter(year == max(year)) %>%
+  mutate(population_female_from_all = Population_ages_15_64_female/Population_ages_15_64_total,
+         population_male_from_all = Population_ages_15_64_male/Population_ages_15_64_total) 
+
+```
+
+
+
+Exercise 5, step 0
+========================================================
+class:small-code
+### Let's look at the data
+#### Not a super exciting question - just trying out more spread()
+#### What was inflation like over time in each country? Each country should be its own column
+```{r}
+df %>%
+  select(year, Country_Name, Inflation_consumer_prices_annual_)
+```
+
+Exercise 5, step 1
+========================================================
+class:small-code
+incremental:true
+#### Before spread():
+```{r}
+df %>%
+  select(year, Country_Name, Inflation_consumer_prices_annual_) %>% head(4)
+```
+
+#### After spread():
+```{r}
+df %>%
+  select(year, Country_Name, Inflation_consumer_prices_annual_) %>%
+  spread(Country_Name, Inflation_consumer_prices_annual_) 
+
+wide_df <- df %>%
+  select(year, Country_Name, Inflation_consumer_prices_annual_) %>%
+  spread(Country_Name, Inflation_consumer_prices_annual_) 
+```
+
+#### Let's gather it back!
+
+Exercise 5, step 2
+========================================================
+class:small-code
+incremental:true
+#### Before gather():
+```{r}
+wide_df %>% head(3)
+```
+
+#### After spread():
+```{r}
+wide_df %>%
+  gather(country, val, -year)
+```
+
+
+Exercise 6, step 0
+========================================================
+class:small-code
+### Let's look at the data
+#### What is births to deaths ratio per country?
+#### Save country values in own columns
+```{r}
+df %>%
+  select(Country_Name, year, Death_rate_crude_per_1_000_people_, Birth_rate_crude_per_1_000_people_)
+```
+
+
+Exercise 6, step 1
+========================================================
+class:small-code
+
+```{r}
+df %>%
+  select(Country_Name, year, Death_rate_crude_per_1_000_people_, Birth_rate_crude_per_1_000_people_) %>%
+  mutate(births_per_death = Birth_rate_crude_per_1_000_people_/Death_rate_crude_per_1_000_people_)
+
+```
+
+
+
+Exercise 6, step 2
+========================================================
+class:small-code
+#### Next: spread!
+```{r}
+df %>%
+  select(Country_Name, year, Death_rate_crude_per_1_000_people_, Birth_rate_crude_per_1_000_people_) %>%
+  mutate(births_per_death = Birth_rate_crude_per_1_000_people_/Death_rate_crude_per_1_000_people_) %>%
+  select(Country_Name, year, births_per_death)
+
+```
+
+
+Exercise 6, step 3 - spread()
+========================================================
+class:small-code
+incremental:true
+#### Before spread():
+```{r}
+df %>%
+  select(Country_Name, year, Death_rate_crude_per_1_000_people_, Birth_rate_crude_per_1_000_people_) %>%
+  mutate(births_per_death = Birth_rate_crude_per_1_000_people_/Death_rate_crude_per_1_000_people_) %>%
+  select(Country_Name, year, births_per_death) %>% head(3)
+```
+
+
+#### After spread():
+```{r}
+df %>%
+  select(Country_Name, year, Death_rate_crude_per_1_000_people_, Birth_rate_crude_per_1_000_people_) %>%
+  mutate(births_per_death = Birth_rate_crude_per_1_000_people_/Death_rate_crude_per_1_000_people_) %>%
+  select(Country_Name, year, births_per_death) %>%
+  spread(Country_Name, births_per_death)
+```
+
+
+
+Exercise 7, step 0
+========================================================
+class:small-code
+### Let's look at the data
+#### What has life expectancy of men vs women been like in the past 5 years?
+#### Return one column per country
+```{r}
+df %>%
+  head(3)
+```
+
+Exercise 7, step 1
+========================================================
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_)
+```
+
+
+Exercise 7, step 2
+========================================================
+class:small-code
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, 
+         year, 
+         Country_Name,
+         Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_)
+```
+
+Exercise 7, step 3
+========================================================
+class:small-code
+incremental:true
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, 
+         year, 
+         Country_Name,
+         Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_) %>%
+  # changed my mind!
+  select(-Life_expectancy_at_birth_male_years_, 
+         -Life_expectancy_at_birth_female_years_) 
+```
+
+#### Spread time!
+
+
+
+Exercise 7, step 4 - spread!
+========================================================
+class:small-code
+incremental:true
+
+#### Before spread():
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, year, Country_Name,
+         Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_) %>%  select(-Life_expectancy_at_birth_male_years_, 
+         -Life_expectancy_at_birth_female_years_) %>% head(2) # ugly code pls don't repeat :D 
+```
+#### After spread():
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, year, Country_Name,
+         Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_) %>%
+  select(-Life_expectancy_at_birth_male_years_, -Life_expectancy_at_birth_female_years_) %>% 
+  spread(Country_Name, life_exp_ratio)
+```
+
+
+Exercise 7, step 5 - and assignment
+========================================================
+class:small-code
+```{r}
+df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, year, Country_Name, Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_) %>%
+  select(-Life_expectancy_at_birth_male_years_, 
+         -Life_expectancy_at_birth_female_years_) %>%
+  spread(Country_Name, life_exp_ratio) %>%
+  top_n(5, year)
+```
+#### Note how top_n() returns real 5 values now, no repetitions
+
+```{r}
+df_example_7 <- df %>%
+  mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
+           Life_expectancy_at_birth_female_years_) %>%
+  select(life_exp_ratio, year, Country_Name, Life_expectancy_at_birth_male_years_,
+         Life_expectancy_at_birth_female_years_) %>%
+  select(-Life_expectancy_at_birth_male_years_, 
+         -Life_expectancy_at_birth_female_years_) %>%
+  spread(Country_Name, life_exp_ratio) %>%
+  top_n(5, year)
+```
+
+
+
+Exercise 8, step 0
+========================================================
+class:small-code
+### Let's look at the data
+#### Another spread! What is GDP growth like across years?
+#### Return year as a column
+```{r}
+df %>%
+  head()
+```
+
+
+Exercise 8, step 1 - spread!
+========================================================
+class:small-code
+incremental:true
+### Before spread()
+```{r}
+df %>%
+  select(GDP_growth_annual_, year, Country_Name)
+```
+
+### After spread()
+```{r}
+df %>%
+  select(GDP_growth_annual_, year, Country_Name) %>%
+  spread(year, GDP_growth_annual_)
+```
+
+##### Now let's gather the data back (for fun!)
+
+
+
+Exercise 8, step 2 - gather!
+========================================================
+class:small-code
+incremental:true
+### Before gather()
+```{r}
+wide_data <- df %>%
+  select(GDP_growth_annual_, year, Country_Name) %>%
+  spread(year, GDP_growth_annual_)
+wide_data %>% head(3)
+```
+
+### After gather()
+```{r}
+wide_data %>%
+  gather(year, val, -Country_Name)
+```
