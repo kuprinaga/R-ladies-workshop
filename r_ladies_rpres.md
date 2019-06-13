@@ -37,9 +37,10 @@ Who are we?
 
 ![Hazel](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/Hazel-Kavili-seriously-highres-2-300x330.jpg)
 
-- Write stuff here
-- and here
-- and here too
+- Studied Statistics (BSc and MSc) in Istanbul
+- Worked on word-puzzle games in Wixot for 1.5 years 
+- Founder of R-Ladies Istanbul
+- Data Analyst in Seriously since November 2018
 
 
 Why tidyverse?
@@ -101,6 +102,7 @@ Note: if the package installer asks you whether or not to install with compilcat
 ```r
 library(tidyverse)
 library(lubridate)
+library(reshape2)
 
 df <- readr::read_csv('https://raw.githubusercontent.com/kuprinaga/R-ladies-workshop/master/nordic_data.csv')
 ```
@@ -2261,16 +2263,52 @@ Visualisations, Line Graph
 class:small-code
 incremental:true
 
+```r
+melted_df_example_7 <- melt(df_example_7, id="year") 
+```
 
 
+```r
+plot_1 <- ggplot(data = melted_df_example_7, 
+                 aes(x = year, y = value, color = variable)) +
+           geom_line()
 
+plot_1 <- plot_1 + theme_bw()
+plot_1 <- plot_1 + labs(x = 'Year', 
+                        y = 'Life Expectancy Ratio', 
+                        title = '')
+plot_1
+```
 
+![plot of chunk unnamed-chunk-62](r_ladies_rpres-figure/unnamed-chunk-62-1.png)
 
+Visualisations, Line Graph  
+========================================================
+
+```r
+plot_2 <- ggplot(df_example_2, 
+                       aes(x = year, y = avg_population_female)) +
+          geom_point(color = 'purple') + 
+          geom_line(size = 5, alpha = 0.3)
+
+plot_2 
+```
+
+![plot of chunk unnamed-chunk-63](r_ladies_rpres-figure/unnamed-chunk-63-1.png)
+
+```r
+#<- plot_2 +
+#scale_y_continuous(limits = c())
+```
+
+Visualisations, Bar Graph  
+========================================================
 
 
 
 
 
 ```
-Error in melt(df_example_7, id = "year") : could not find function "melt"
+Error in melt(df_example_3, id = "year") : 
+  object 'df_example_3' not found
 ```

@@ -37,9 +37,10 @@ Who are we?
 
 ![Hazel](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/Hazel-Kavili-seriously-highres-2-300x330.jpg)
 
-- Write stuff here
-- and here
-- and here too
+- Studied Statistics (BSc and MSc) in Istanbul
+- Worked on word-puzzle games in Wixot for 1.5 years 
+- Founder of R-Ladies Istanbul
+- Data Analyst in Seriously since November 2018
 
 
 Why tidyverse?
@@ -99,6 +100,7 @@ Note: if the package installer asks you whether or not to install with compilcat
 ```{r}
 library(tidyverse)
 library(lubridate)
+library(reshape2)
 
 df <- readr::read_csv('https://raw.githubusercontent.com/kuprinaga/R-ladies-workshop/master/nordic_data.csv')
 ```
