@@ -1008,26 +1008,26 @@ df %>%
 ```
 # A tibble: 6 x 37
    year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-  <dbl> <chr>        <chr>                   <dbl>            <dbl>
+  <int> <chr>        <chr>                   <dbl>            <dbl>
 1  1960 Denmark      DNK                      44.2             55.8
 2  1961 Denmark      DNK                      45.0             55.6
 3  1962 Denmark      DNK                      45.9             55.2
 4  1963 Denmark      DNK                      45.5             54.8
 5  1964 Denmark      DNK                      45.1             54.5
 6  1965 Denmark      DNK                      44.7             54.3
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1035,14 +1035,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 
@@ -1059,7 +1059,7 @@ df %>%
 ```
 # A tibble: 20 x 37
     year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-   <dbl> <chr>        <chr>                   <dbl>            <dbl>
+   <int> <chr>        <chr>                   <dbl>            <dbl>
  1  2014 Denmark      DNK                      4.31             55.3
  2  2015 Denmark      DNK                      4.25             56.0
  3  2016 Denmark      DNK                      4.19             56.3
@@ -1080,19 +1080,19 @@ df %>%
 18  2016 Sweden       SWE                      5.27             59.3
 19  2017 Sweden       SWE                      5.24             60.1
 20  2018 Sweden       SWE                     NA                NA  
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1100,14 +1100,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 #### Why?
@@ -1142,7 +1142,7 @@ df %>% arrange(year) %>%
 ```
 # A tibble: 20 x 2
     year Country_Code
-   <dbl> <chr>       
+   <int> <chr>       
  1  2014 DNK         
  2  2014 FIN         
  3  2014 NOR         
@@ -1180,7 +1180,7 @@ df %>% arrange(year) %>%
 ```
 # A tibble: 5 x 2
    year Country_Code
-  <dbl> <chr>       
+  <int> <chr>       
 1  2014 DNK         
 2  2014 FIN         
 3  2014 NOR         
@@ -1199,7 +1199,7 @@ df %>%
 ```
 # A tibble: 5 x 5
    year Denmark Finland Norway Sweden
-  <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+  <int>   <dbl>   <dbl>  <dbl>  <dbl>
 1  2014    1.69    1.71   1.75   1.88
 2  2015    1.71    1.65   1.72   1.85
 3  2016    1.79    1.57   1.71   1.85
@@ -1222,7 +1222,7 @@ df %>%
 # A tibble: 20 x 37
 # Groups:   Country_Name, year [20]
     year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-   <dbl> <chr>        <chr>                   <dbl>            <dbl>
+   <int> <chr>        <chr>                   <dbl>            <dbl>
  1  2014 Denmark      DNK                      4.31             55.3
  2  2015 Denmark      DNK                      4.25             56.0
  3  2016 Denmark      DNK                      4.19             56.3
@@ -1243,19 +1243,19 @@ df %>%
 18  2016 Sweden       SWE                      5.27             59.3
 19  2017 Sweden       SWE                      5.24             60.1
 20  2018 Sweden       SWE                     NA                NA  
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1263,14 +1263,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 
@@ -1290,7 +1290,7 @@ class:small-code
 # A tibble: 20 x 3
 # Groups:   Country_Name, year [20]
    Country_Name  year Fertility_rate_total_births_per_woman_
-   <chr>        <dbl>                                  <dbl>
+   <chr>        <int>                                  <dbl>
  1 Denmark       2014                                   1.69
  2 Denmark       2015                                   1.71
  3 Denmark       2016                                   1.79
@@ -1337,7 +1337,7 @@ incremental:true
 # A tibble: 3 x 3
 # Groups:   Country_Name, year [3]
   Country_Name  year Fertility_rate_total_births_per_woman_
-  <chr>        <dbl>                                  <dbl>
+  <chr>        <int>                                  <dbl>
 1 Denmark       2014                                   1.69
 2 Denmark       2015                                   1.71
 3 Denmark       2016                                   1.79
@@ -1358,7 +1358,7 @@ df %>%
 # A tibble: 5 x 5
 # Groups:   year [5]
    year Denmark Finland Norway Sweden
-  <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+  <int>   <dbl>   <dbl>  <dbl>  <dbl>
 1  2014    1.69    1.71   1.75   1.88
 2  2015    1.71    1.65   1.72   1.85
 3  2016    1.79    1.57   1.71   1.85
@@ -1409,24 +1409,24 @@ df %>%
 ```
 # A tibble: 4 x 37
    year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-  <dbl> <chr>        <chr>                   <dbl>            <dbl>
+  <int> <chr>        <chr>                   <dbl>            <dbl>
 1  2018 Denmark      DNK                        NA               NA
 2  2018 Finland      FIN                        NA               NA
 3  2018 Norway       NOR                        NA               NA
 4  2018 Sweden       SWE                        NA               NA
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1434,14 +1434,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 
@@ -1458,19 +1458,19 @@ df %>%
 
 ```
 # A tibble: 232 x 5
-    year Country_Name Population_ages_1… Population_ages_… Population_ages…
-   <dbl> <chr>                     <dbl>             <dbl>            <dbl>
- 1  1960 Denmark                 1484063           2939628          1455561
- 2  1961 Denmark                 1495246           2963981          1468735
- 3  1962 Denmark                 1509267           2994219          1484952
- 4  1963 Denmark                 1523949           3026185          1502241
- 5  1964 Denmark                 1537736           3056997          1519265
- 6  1965 Denmark                 1549424           3084306          1534888
- 7  1966 Denmark                 1558277           3106547          1548269
- 8  1967 Denmark                 1566467           3127998          1561535
- 9  1968 Denmark                 1571307           3143027          1571727
-10  1969 Denmark                 1575034           3155777          1580747
-# … with 222 more rows
+    year Country_Name Population_ages_… Population_ages_… Population_ages…
+   <int> <chr>                    <int>             <int>            <int>
+ 1  1960 Denmark                1484063           2939628          1455561
+ 2  1961 Denmark                1495246           2963981          1468735
+ 3  1962 Denmark                1509267           2994219          1484952
+ 4  1963 Denmark                1523949           3026185          1502241
+ 5  1964 Denmark                1537736           3056997          1519265
+ 6  1965 Denmark                1549424           3084306          1534888
+ 7  1966 Denmark                1558277           3106547          1548269
+ 8  1967 Denmark                1566467           3127998          1561535
+ 9  1968 Denmark                1571307           3143027          1571727
+10  1969 Denmark                1575034           3155777          1580747
+# ... with 222 more rows
 ```
 
 
@@ -1489,12 +1489,12 @@ df %>%
 
 ```
 # A tibble: 4 x 5
-   year Country_Name Population_ages_1… Population_ages_… Population_ages_…
-  <dbl> <chr>                     <dbl>             <dbl>             <dbl>
-1  2017 Denmark                 1823679           3680222           1856545
-2  2017 Finland                 1695010           3435196           1740171
-3  2017 Norway                  1679050           3451390           1772340
-4  2017 Sweden                  3086964           6284045           3197079
+   year Country_Name Population_ages_1… Population_ages_… Population_ages…
+  <int> <chr>                     <int>             <int>            <int>
+1  2017 Denmark                 1823679           3680222          1856545
+2  2017 Finland                 1695010           3435196          1740171
+3  2017 Norway                  1679050           3451390          1772340
+4  2017 Sweden                  3086964           6284045          3197079
 ```
 
 
@@ -1515,12 +1515,12 @@ df %>%
 ```
 # A tibble: 4 x 7
    year Country_Name Population_ages… Population_ages… Population_ages…
-  <dbl> <chr>                   <dbl>            <dbl>            <dbl>
+  <int> <chr>                   <int>            <int>            <int>
 1  2017 Denmark               1823679          3680222          1856545
 2  2017 Finland               1695010          3435196          1740171
 3  2017 Norway                1679050          3451390          1772340
 4  2017 Sweden                3086964          6284045          3197079
-# … with 2 more variables: population_female_from_all <dbl>,
+# ... with 2 more variables: population_female_from_all <dbl>,
 #   population_male_from_all <dbl>
 ```
 
@@ -1556,7 +1556,7 @@ df %>%
 ```
 # A tibble: 236 x 3
     year Country_Name Inflation_consumer_prices_annual_
-   <dbl> <chr>                                    <dbl>
+   <int> <chr>                                    <dbl>
  1  1960 Denmark                                   1.26
  2  1961 Denmark                                   3.45
  3  1962 Denmark                                   7.38
@@ -1567,7 +1567,7 @@ df %>%
  8  1967 Denmark                                   8.21
  9  1968 Denmark                                   8.01
 10  1969 Denmark                                   3.49
-# … with 226 more rows
+# ... with 226 more rows
 ```
 
 Exercise 5, step 1
@@ -1584,7 +1584,7 @@ df %>%
 ```
 # A tibble: 4 x 3
    year Country_Name Inflation_consumer_prices_annual_
-  <dbl> <chr>                                    <dbl>
+  <int> <chr>                                    <dbl>
 1  1960 Denmark                                   1.26
 2  1961 Denmark                                   3.45
 3  1962 Denmark                                   7.38
@@ -1602,7 +1602,7 @@ df %>%
 ```
 # A tibble: 59 x 5
     year Denmark Finland Norway Sweden
-   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+   <int>   <dbl>   <dbl>  <dbl>  <dbl>
  1  1960    1.26    3.42  0.360   4.14
  2  1961    3.45    1.69  2.16    2.16
  3  1962    7.38    4.38  5.27    4.77
@@ -1613,7 +1613,7 @@ df %>%
  8  1967    8.21    5.38  4.58    4.29
  9  1968    8.01    9.19  3.45    1.94
 10  1969    3.49    2.21  2.96    2.69
-# … with 49 more rows
+# ... with 49 more rows
 ```
 
 ```r
@@ -1637,7 +1637,7 @@ wide_df %>% head(3)
 ```
 # A tibble: 3 x 5
    year Denmark Finland Norway Sweden
-  <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+  <int>   <dbl>   <dbl>  <dbl>  <dbl>
 1  1960    1.26    3.42  0.360   4.14
 2  1961    3.45    1.69  2.16    2.16
 3  1962    7.38    4.38  5.27    4.77
@@ -1653,7 +1653,7 @@ wide_df %>%
 ```
 # A tibble: 236 x 3
     year country   val
-   <dbl> <chr>   <dbl>
+   <int> <chr>   <dbl>
  1  1960 Denmark  1.26
  2  1961 Denmark  3.45
  3  1962 Denmark  7.38
@@ -1664,7 +1664,7 @@ wide_df %>%
  8  1967 Denmark  8.21
  9  1968 Denmark  8.01
 10  1969 Denmark  3.49
-# … with 226 more rows
+# ... with 226 more rows
 ```
 
 
@@ -1682,19 +1682,19 @@ df %>%
 
 ```
 # A tibble: 236 x 4
-   Country_Name  year Death_rate_crude_per_1_00… Birth_rate_crude_per_1_00…
-   <chr>        <dbl>                      <dbl>                      <dbl>
- 1 Denmark       1960                        9.5                       16.6
- 2 Denmark       1961                        9.4                       16.6
- 3 Denmark       1962                        9.8                       16.7
- 4 Denmark       1963                        9.8                       17.6
- 5 Denmark       1964                        9.9                       17.7
- 6 Denmark       1965                       10.1                       18  
- 7 Denmark       1966                       10.3                       18.4
- 8 Denmark       1967                        9.9                       16.8
- 9 Denmark       1968                        9.7                       15.3
-10 Denmark       1969                        9.8                       14.6
-# … with 226 more rows
+   Country_Name  year Death_rate_crude_per_1_00… Birth_rate_crude_per_1_0…
+   <chr>        <int>                      <dbl>                     <dbl>
+ 1 Denmark       1960                        9.5                      16.6
+ 2 Denmark       1961                        9.4                      16.6
+ 3 Denmark       1962                        9.8                      16.7
+ 4 Denmark       1963                        9.8                      17.6
+ 5 Denmark       1964                        9.9                      17.7
+ 6 Denmark       1965                       10.1                      18  
+ 7 Denmark       1966                       10.3                      18.4
+ 8 Denmark       1967                        9.9                      16.8
+ 9 Denmark       1968                        9.7                      15.3
+10 Denmark       1969                        9.8                      14.6
+# ... with 226 more rows
 ```
 
 
@@ -1711,19 +1711,19 @@ df %>%
 
 ```
 # A tibble: 236 x 5
-   Country_Name  year Death_rate_crude_… Birth_rate_crude… births_per_death
-   <chr>        <dbl>              <dbl>             <dbl>            <dbl>
- 1 Denmark       1960                9.5              16.6             1.75
- 2 Denmark       1961                9.4              16.6             1.77
- 3 Denmark       1962                9.8              16.7             1.70
- 4 Denmark       1963                9.8              17.6             1.80
- 5 Denmark       1964                9.9              17.7             1.79
- 6 Denmark       1965               10.1              18               1.78
- 7 Denmark       1966               10.3              18.4             1.79
- 8 Denmark       1967                9.9              16.8             1.70
- 9 Denmark       1968                9.7              15.3             1.58
-10 Denmark       1969                9.8              14.6             1.49
-# … with 226 more rows
+   Country_Name  year Death_rate_crude… Birth_rate_crude… births_per_death
+   <chr>        <int>             <dbl>             <dbl>            <dbl>
+ 1 Denmark       1960               9.5              16.6             1.75
+ 2 Denmark       1961               9.4              16.6             1.77
+ 3 Denmark       1962               9.8              16.7             1.70
+ 4 Denmark       1963               9.8              17.6             1.80
+ 5 Denmark       1964               9.9              17.7             1.79
+ 6 Denmark       1965              10.1              18               1.78
+ 7 Denmark       1966              10.3              18.4             1.79
+ 8 Denmark       1967               9.9              16.8             1.70
+ 9 Denmark       1968               9.7              15.3             1.58
+10 Denmark       1969               9.8              14.6             1.49
+# ... with 226 more rows
 ```
 
 
@@ -1743,7 +1743,7 @@ df %>%
 ```
 # A tibble: 236 x 3
    Country_Name  year births_per_death
-   <chr>        <dbl>            <dbl>
+   <chr>        <int>            <dbl>
  1 Denmark       1960             1.75
  2 Denmark       1961             1.77
  3 Denmark       1962             1.70
@@ -1754,7 +1754,7 @@ df %>%
  8 Denmark       1967             1.70
  9 Denmark       1968             1.58
 10 Denmark       1969             1.49
-# … with 226 more rows
+# ... with 226 more rows
 ```
 
 
@@ -1774,7 +1774,7 @@ df %>%
 ```
 # A tibble: 3 x 3
   Country_Name  year births_per_death
-  <chr>        <dbl>            <dbl>
+  <chr>        <int>            <dbl>
 1 Denmark       1960             1.75
 2 Denmark       1961             1.77
 3 Denmark       1962             1.70
@@ -1794,7 +1794,7 @@ df %>%
 ```
 # A tibble: 59 x 5
     year Denmark Finland Norway Sweden
-   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+   <int>   <dbl>   <dbl>  <dbl>  <dbl>
  1  1960    1.75    2.06   1.90   1.37
  2  1961    1.77    2.02   1.88   1.42
  3  1962    1.70    1.91   1.82   1.39
@@ -1805,7 +1805,7 @@ df %>%
  8  1967    1.70    1.77   1.83   1.52
  9  1968    1.58    1.64   1.78   1.38
 10  1969    1.49    1.47   1.74   1.29
-# … with 49 more rows
+# ... with 49 more rows
 ```
 
 
@@ -1825,23 +1825,23 @@ df %>%
 ```
 # A tibble: 3 x 37
    year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-  <dbl> <chr>        <chr>                   <dbl>            <dbl>
+  <int> <chr>        <chr>                   <dbl>            <dbl>
 1  1960 Denmark      DNK                      44.2             55.8
 2  1961 Denmark      DNK                      45.0             55.6
 3  1962 Denmark      DNK                      45.9             55.2
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1849,14 +1849,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 
@@ -1872,7 +1872,7 @@ df %>%
 ```
 # A tibble: 236 x 38
     year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-   <dbl> <chr>        <chr>                   <dbl>            <dbl>
+   <int> <chr>        <chr>                   <dbl>            <dbl>
  1  1960 Denmark      DNK                      44.2             55.8
  2  1961 Denmark      DNK                      45.0             55.6
  3  1962 Denmark      DNK                      45.9             55.2
@@ -1883,19 +1883,19 @@ df %>%
  8  1967 Denmark      DNK                      44.0             54.6
  9  1968 Denmark      DNK                      40.7             54.8
 10  1969 Denmark      DNK                      37.4             55.0
-# … with 226 more rows, and 33 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 226 more rows, and 33 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -1903,14 +1903,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>, life_exp_ratio <dbl>
 ```
 
@@ -1932,19 +1932,19 @@ df %>%
 
 ```
 # A tibble: 236 x 5
-   life_exp_ratio  year Country_Name Life_expectancy_at… Life_expectancy_a…
-            <dbl> <dbl> <chr>                      <dbl>              <dbl>
- 1          0.952  1960 Denmark                     70.4               74  
- 2          0.949  1961 Denmark                     70.6               74.4
- 3          0.945  1962 Denmark                     70.3               74.4
- 4          0.945  1963 Denmark                     70.4               74.5
- 5          0.940  1964 Denmark                     70.3               74.8
- 6          0.940  1965 Denmark                     70.2               74.6
- 7          0.939  1966 Denmark                     70.2               74.8
- 8          0.937  1967 Denmark                     70.6               75.4
- 9          0.936  1968 Denmark                     70.8               75.6
-10          0.936  1969 Denmark                     70.9               75.7
-# … with 226 more rows
+   life_exp_ratio  year Country_Name Life_expectancy_a… Life_expectancy_a…
+            <dbl> <int> <chr>                     <dbl>              <dbl>
+ 1          0.952  1960 Denmark                    70.4               74  
+ 2          0.949  1961 Denmark                    70.6               74.4
+ 3          0.945  1962 Denmark                    70.3               74.4
+ 4          0.945  1963 Denmark                    70.4               74.5
+ 5          0.940  1964 Denmark                    70.3               74.8
+ 6          0.940  1965 Denmark                    70.2               74.6
+ 7          0.939  1966 Denmark                    70.2               74.8
+ 8          0.937  1967 Denmark                    70.6               75.4
+ 9          0.936  1968 Denmark                    70.8               75.6
+10          0.936  1969 Denmark                    70.9               75.7
+# ... with 226 more rows
 ```
 
 Exercise 7, step 3
@@ -1969,7 +1969,7 @@ df %>%
 ```
 # A tibble: 236 x 3
    life_exp_ratio  year Country_Name
-            <dbl> <dbl> <chr>       
+            <dbl> <int> <chr>       
  1          0.952  1960 Denmark     
  2          0.949  1961 Denmark     
  3          0.945  1962 Denmark     
@@ -1980,7 +1980,7 @@ df %>%
  8          0.937  1967 Denmark     
  9          0.936  1968 Denmark     
 10          0.936  1969 Denmark     
-# … with 226 more rows
+# ... with 226 more rows
 ```
 
 #### Spread time!
@@ -2007,7 +2007,7 @@ df %>%
 ```
 # A tibble: 2 x 3
   life_exp_ratio  year Country_Name
-           <dbl> <dbl> <chr>       
+           <dbl> <int> <chr>       
 1          0.952  1960 Denmark     
 2          0.949  1961 Denmark     
 ```
@@ -2026,7 +2026,7 @@ df %>%
 ```
 # A tibble: 59 x 5
     year Denmark Finland Norway Sweden
-   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+   <int>   <dbl>   <dbl>  <dbl>  <dbl>
  1  1960   0.952   0.903  0.940  0.951
  2  1961   0.949   0.908  0.936  0.950
  3  1962   0.945   0.901  0.933  0.946
@@ -2037,7 +2037,7 @@ df %>%
  8  1967   0.937   0.896  0.927  0.938
  9  1968   0.936   0.896  0.927  0.939
 10  1969   0.936   0.892  0.923  0.936
-# … with 49 more rows
+# ... with 49 more rows
 ```
 
 
@@ -2060,7 +2060,7 @@ df %>%
 ```
 # A tibble: 5 x 5
    year Denmark Finland Norway Sweden
-  <dbl>   <dbl>   <dbl>  <dbl>  <dbl>
+  <int>   <dbl>   <dbl>  <dbl>  <dbl>
 1  2014   0.950   0.932  0.951  0.955
 2  2015   0.953   0.932  0.956  0.956
 3  2016   0.954   0.931  0.958  0.958
@@ -2099,26 +2099,26 @@ df %>%
 ```
 # A tibble: 6 x 37
    year Country_Name Country_Code Adolescent_fert… Age_dependency_…
-  <dbl> <chr>        <chr>                   <dbl>            <dbl>
+  <int> <chr>        <chr>                   <dbl>            <dbl>
 1  1960 Denmark      DNK                      44.2             55.8
 2  1961 Denmark      DNK                      45.0             55.6
 3  1962 Denmark      DNK                      45.9             55.2
 4  1963 Denmark      DNK                      45.5             54.8
 5  1964 Denmark      DNK                      45.1             54.5
 6  1965 Denmark      DNK                      44.7             54.3
-# … with 32 more variables:
-#   Age_population_age_0_female_interpolated <dbl>,
-#   Age_population_age_0_male_interpolated <dbl>,
-#   Age_population_age_01_female_interpolated <dbl>,
-#   Age_population_age_01_male_interpolated <dbl>,
-#   Age_population_age_02_female_interpolated <dbl>,
-#   Age_population_age_02_male_interpolated <dbl>,
-#   Age_population_age_03_female_interpolated <dbl>,
-#   Age_population_age_03_male_interpolated <dbl>,
-#   Age_population_age_04_female_interpolated <dbl>,
-#   Age_population_age_04_male_interpolated <dbl>,
-#   Age_population_age_05_female_interpolated <dbl>,
-#   Age_population_age_05_male_interpolated <dbl>,
+# ... with 32 more variables:
+#   Age_population_age_0_female_interpolated <int>,
+#   Age_population_age_0_male_interpolated <int>,
+#   Age_population_age_01_female_interpolated <int>,
+#   Age_population_age_01_male_interpolated <int>,
+#   Age_population_age_02_female_interpolated <int>,
+#   Age_population_age_02_male_interpolated <int>,
+#   Age_population_age_03_female_interpolated <int>,
+#   Age_population_age_03_male_interpolated <int>,
+#   Age_population_age_04_female_interpolated <int>,
+#   Age_population_age_04_male_interpolated <int>,
+#   Age_population_age_05_female_interpolated <int>,
+#   Age_population_age_05_male_interpolated <int>,
 #   Birth_rate_crude_per_1_000_people_ <dbl>,
 #   Death_rate_crude_per_1_000_people_ <dbl>,
 #   Fertility_rate_total_births_per_woman_ <dbl>, GDP_current_US_ <dbl>,
@@ -2126,14 +2126,14 @@ df %>%
 #   Inflation_consumer_prices_annual_ <dbl>,
 #   Life_expectancy_at_birth_female_years_ <dbl>,
 #   Life_expectancy_at_birth_male_years_ <dbl>,
-#   Population_ages_0_14_female <dbl>,
+#   Population_ages_0_14_female <int>,
 #   Population_ages_0_14_of_total_ <dbl>,
-#   Population_ages_15_64_female <dbl>, Population_ages_15_64_male <dbl>,
+#   Population_ages_15_64_female <int>, Population_ages_15_64_male <int>,
 #   Population_ages_15_64_of_total_ <dbl>,
-#   Population_ages_15_64_total <dbl>,
-#   Population_ages_65_and_above_female <dbl>,
-#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <dbl>,
-#   Population_female_of_total_ <dbl>, Population_total <dbl>,
+#   Population_ages_15_64_total <int>,
+#   Population_ages_65_and_above_female <int>,
+#   Population_ages_65_and_above_of_total_ <dbl>, Population_female <int>,
+#   Population_female_of_total_ <dbl>, Population_total <int>,
 #   GDP_growth_annual_ <dbl>
 ```
 
@@ -2152,7 +2152,7 @@ df %>%
 ```
 # A tibble: 236 x 3
    GDP_growth_annual_  year Country_Name
-                <dbl> <dbl> <chr>       
+                <dbl> <int> <chr>       
  1             NA      1960 Denmark     
  2              6.38   1961 Denmark     
  3              5.67   1962 Denmark     
@@ -2163,7 +2163,7 @@ df %>%
  8              3.42   1967 Denmark     
  9              3.97   1968 Denmark     
 10              6.32   1969 Denmark     
-# … with 226 more rows
+# ... with 226 more rows
 ```
 
 ### After spread()
@@ -2182,7 +2182,7 @@ df %>%
 2 Finland          NA   7.60   2.98  3.29    5.24   5.30   2.37   2.17
 3 Norway           NA   6.27   2.81  3.79    5.01   5.29   3.79   6.26
 4 Sweden           NA   5.68   4.26  5.33    6.82   3.82   2.09   3.37
-# … with 51 more variables: `1968` <dbl>, `1969` <dbl>, `1970` <dbl>,
+# ... with 51 more variables: `1968` <dbl>, `1969` <dbl>, `1970` <dbl>,
 #   `1971` <dbl>, `1972` <dbl>, `1973` <dbl>, `1974` <dbl>, `1975` <dbl>,
 #   `1976` <dbl>, `1977` <dbl>, `1978` <dbl>, `1979` <dbl>, `1980` <dbl>,
 #   `1981` <dbl>, `1982` <dbl>, `1983` <dbl>, `1984` <dbl>, `1985` <dbl>,
@@ -2219,7 +2219,7 @@ wide_data %>% head(3)
 1 Denmark          NA   6.38   5.67  0.637   9.27   4.56   2.74   3.42
 2 Finland          NA   7.60   2.98  3.29    5.24   5.30   2.37   2.17
 3 Norway           NA   6.27   2.81  3.79    5.01   5.29   3.79   6.26
-# … with 51 more variables: `1968` <dbl>, `1969` <dbl>, `1970` <dbl>,
+# ... with 51 more variables: `1968` <dbl>, `1969` <dbl>, `1970` <dbl>,
 #   `1971` <dbl>, `1972` <dbl>, `1973` <dbl>, `1974` <dbl>, `1975` <dbl>,
 #   `1976` <dbl>, `1977` <dbl>, `1978` <dbl>, `1979` <dbl>, `1980` <dbl>,
 #   `1981` <dbl>, `1982` <dbl>, `1983` <dbl>, `1984` <dbl>, `1985` <dbl>,
@@ -2253,5 +2253,24 @@ wide_data %>%
  8 Sweden       1961   5.68
  9 Denmark      1962   5.67
 10 Finland      1962   2.98
-# … with 226 more rows
+# ... with 226 more rows
+```
+
+Visualisations, Line Graph  
+========================================================
+class:small-code
+incremental:true
+
+
+
+
+
+
+
+
+
+
+
+```
+Error in melt(df_example_7, id = "year") : could not find function "melt"
 ```

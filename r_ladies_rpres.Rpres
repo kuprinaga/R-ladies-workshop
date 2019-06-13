@@ -821,3 +821,75 @@ wide_data %>% head(3)
 wide_data %>%
   gather(year, val, -Country_Name)
 ```
+
+Visualisations, Line Graph  
+========================================================
+class:small-code
+incremental:true
+```{r}
+melted_df_example_7 <- melt(df_example_7, id="year") 
+```
+
+```{r}
+plot_1 <- ggplot(data = melted_df_example_7, 
+                 aes(x = year, y = value, color = variable)) +
+           geom_line()
+
+plot_1 <- plot_1 + theme_bw()
+plot_1 <- plot_1 + labs(x = 'Year', 
+                        y = 'Life Expectancy Ratio', 
+                        title = '')
+plot_1
+```
+
+Visualisations, Line Graph  
+========================================================
+```{r}
+plot_2 <- ggplot(df_example_2, 
+                       aes(x = year, y = avg_population_female)) +
+          geom_point(color = 'purple') + 
+          geom_line(size = 5, alpha = 0.3)
+
+plot_2 
+#<- plot_2 +
+#scale_y_continuous(limits = c())
+```
+
+Visualisations, Bar Graph  
+========================================================
+```{r}
+melted_df_example_3 <- melt(df_example_3, id="year") 
+```
+```{r}
+plot_3 <- ggplot(data = melted_df_example_3, 
+                 aes(x = year, y = value)) +
+        geom_bar(stat = 'identity', aes(fill = variable))
+
+plot_3 <- plot_3 + 
+          theme_gray() +
+          labs(x = 'Year', 
+               y = 'Total Births Per Woman', 
+               title = 'Fertility Rate Total Births Per Woman Group by Country',
+               fill = 'Country')
+
+plot_3
+```
+
+Visualisations, Bar Graph  
+========================================================
+```{r}
+plot_4 <- ggplot(data = melted_df_example_3, 
+                 aes(x = year, y = value)) +
+          geom_bar(stat="identity",
+                   aes(fill = variable), width=.5, position = "dodge")  
+          
+
+
+plot_4 <- plot_4 +
+          labs(x = 'Year', 
+               y = 'Total Births Per Woman', 
+               title = 'Fertility Rate Total Births Per Woman Group by Country',
+               fill = 'Country')
+
+plot_4
+```
