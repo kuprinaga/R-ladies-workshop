@@ -833,7 +833,6 @@ wide_data %>%
 
 Visualisations, Melt the data! 
 ========================================================
-class:small-code
 incremental:true
 ```{r}
 melted_df_example_7 <- melt(df_example_7, id="year") 
@@ -842,26 +841,51 @@ head(melted_df_example_7)
 
 Line Graph  
 ========================================================
+class:small-code
+incremental:true
 ```{r}
 plot_1 <- ggplot(data = melted_df_example_7, 
-                 aes(x = year, y = value, color = variable)) +
-           geom_line()
+                 aes(x = year, y = value, color = variable)) 
 
+```
+             
+```{r}  
+ plot_1 <- plot_1 + geom_line()
+```  
+  
+```{r} 
 plot_1 <- plot_1 + theme_bw()
+``` 
+
+```{r} 
 plot_1 <- plot_1 + labs(x = 'Year', 
                         y = 'Life Expectancy Ratio', 
                         title = '')
+```
+
+```{r} 
 plot_1
 ```
 
 More Line Graph  
 ========================================================
+class:small-code
+incremental:true
 ```{r}
-plot_2 <- ggplot(df_example_2, 
-                       aes(x = year, y = avg_population_female)) +
-          geom_point(color = 'purple') + 
-          geom_line(size = 5, alpha = 0.3)
+plot_2 <- ggplot(data = df_example_2, 
+                 aes(x = year, y = avg_population_female))
+```
 
+```{r}
+plot_2 <- geom_point(color = 'purple') 
+```
+
+```{r}
+plot_2 <- geom_line(size = 5, alpha = 0.3)
+```
+
+
+```{r}
 plot_2 
 #<- plot_2 +
 #scale_y_continuous(limits = c())
@@ -871,40 +895,68 @@ Visualisations, Bar Graph
 ========================================================
 ```{r}
 melted_df_example_3 <- melt(df_example_3, id="year") 
+head(melted_df_example_3)
 ```
 
 Bar Graph  
 ========================================================
+class:small-code
+incremental:true
 ```{r}
 plot_3 <- ggplot(data = melted_df_example_3, 
-                 aes(x = year, y = value)) +
-        geom_bar(stat = 'identity', aes(fill = variable))
+                 aes(x = year, y = value))
+```
 
+```{r}
 plot_3 <- plot_3 + 
-          theme_gray() +
+          geom_bar(stat = 'identity', aes(fill = variable))
+```
+
+```{r}
+plot_3 <- plot_3 + theme_gray()
+```
+
+```{r}
+
+plot_3 <- plot_3 +
           labs(x = 'Year', 
                y = 'Total Births Per Woman', 
                title = 'Fertility Rate Total Births Per Woman Group by Country',
                fill = 'Country')
+```
 
+```{r}
 plot_3
 ```
 
 More Bar Graph  
 ========================================================
+class:small-code
+incremental:true
+
 ```{r}
 plot_4 <- ggplot(data = melted_df_example_3, 
-                 aes(x = year, y = value)) +
+                 aes(x = year, y = value))
+```
+
+
+```{r}
+plot_4 <- plot_4 + 
           geom_bar(stat="identity",
-                   aes(fill = variable), width=.5, position = "dodge")  
-          
+                   aes(fill = variable), 
+                   width=.5, position = "dodge")
 
+```
 
+```{r}
 plot_4 <- plot_4 +
           labs(x = 'Year', 
                y = 'Total Births Per Woman', 
                title = 'Fertility Rate Total Births Per Woman Group by Country',
                fill = 'Country')
-
-plot_4
 ```
+
+```{r}
+plot_4 
+```
+
