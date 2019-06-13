@@ -2258,15 +2258,28 @@ wide_data %>%
 # ... with 226 more rows
 ```
 
-Visualisations, Line Graph  
+Visualisations, Melt the data! 
 ========================================================
 class:small-code
 incremental:true
 
 ```r
 melted_df_example_7 <- melt(df_example_7, id="year") 
+head(melted_df_example_7)
 ```
 
+```
+  year variable     value
+1 2014  Denmark 0.9504831
+2 2015  Denmark 0.9528416
+3 2016  Denmark 0.9541063
+4 2017  Denmark 0.9553679
+5 2018  Denmark        NA
+6 2014  Finland 0.9322235
+```
+
+Line Graph  
+========================================================
 
 ```r
 plot_1 <- ggplot(data = melted_df_example_7, 
@@ -2282,7 +2295,7 @@ plot_1
 
 ![plot of chunk unnamed-chunk-62](r_ladies_rpres-figure/unnamed-chunk-62-1.png)
 
-Visualisations, Line Graph  
+More Line Graph  
 ========================================================
 
 ```r
@@ -2303,6 +2316,7 @@ plot_2
 
 Visualisations, Bar Graph  
 ========================================================
+
 
 
 

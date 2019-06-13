@@ -824,14 +824,17 @@ wide_data %>%
   gather(year, val, -Country_Name)
 ```
 
-Visualisations, Line Graph  
+Visualisations, Melt the data! 
 ========================================================
 class:small-code
 incremental:true
 ```{r}
 melted_df_example_7 <- melt(df_example_7, id="year") 
+head(melted_df_example_7)
 ```
 
+Line Graph  
+========================================================
 ```{r}
 plot_1 <- ggplot(data = melted_df_example_7, 
                  aes(x = year, y = value, color = variable)) +
@@ -844,7 +847,7 @@ plot_1 <- plot_1 + labs(x = 'Year',
 plot_1
 ```
 
-Visualisations, Line Graph  
+More Line Graph  
 ========================================================
 ```{r}
 plot_2 <- ggplot(df_example_2, 
@@ -862,6 +865,9 @@ Visualisations, Bar Graph
 ```{r}
 melted_df_example_3 <- melt(df_example_3, id="year") 
 ```
+
+Bar Graph  
+========================================================
 ```{r}
 plot_3 <- ggplot(data = melted_df_example_3, 
                  aes(x = year, y = value)) +
@@ -877,7 +883,7 @@ plot_3 <- plot_3 +
 plot_3
 ```
 
-Visualisations, Bar Graph  
+More Bar Graph  
 ========================================================
 ```{r}
 plot_4 <- ggplot(data = melted_df_example_3, 
