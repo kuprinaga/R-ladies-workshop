@@ -451,6 +451,13 @@ df %>%
   group_by(Country_Name, year) %>%
   select(Fertility_rate_total_births_per_woman_) %>%
   spread(Country_Name, Fertility_rate_total_births_per_woman_)
+
+df_example_3 <- df %>% 
+  top_n(20, year) %>% 
+  group_by(Country_Name, year) %>%
+  select(Fertility_rate_total_births_per_woman_) %>%
+  spread(Country_Name, Fertility_rate_total_births_per_woman_)
+
 ```
 
 
