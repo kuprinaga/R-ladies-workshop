@@ -839,82 +839,92 @@ melted_df_example_7 <- melt(df_example_7, id="year")
 head(melted_df_example_7)
 ```
 
-Line Graph  
+Line Graph - Step 1
 ========================================================
-class:small-code
-incremental:true
 ```{r}
 plot_1 <- ggplot(data = melted_df_example_7, 
                  aes(x = year, y = value, color = variable)) 
-
+plot_1
 ```
-             
+
+Line Graph - Step 2
+========================================================
 ```{r}  
  plot_1 <- plot_1 + geom_line()
+plot_1
 ```  
-  
+
+Line Graph - Step 3
+========================================================
+
 ```{r} 
 plot_1 <- plot_1 + theme_bw()
+plot_1
 ``` 
 
+Line Graph - Step 4 & final!
+========================================================
 ```{r} 
 plot_1 <- plot_1 + labs(x = 'Year', 
                         y = 'Life Expectancy Ratio', 
                         title = '')
-```
 
-```{r} 
 plot_1
 ```
 
-More Line Graph  
+More Line Graph - Step 1
 ========================================================
-class:small-code
-incremental:true
 ```{r}
 plot_2 <- ggplot(data = df_example_2, 
                  aes(x = year, y = avg_population_female))
+plot_2
 ```
-
+Second line graph - Step 2  
+========================================================
 ```{r}
 plot_2 <- geom_point(color = 'purple') 
+plot_2
 ```
-
+Second line graph - Step 3 & final!
+========================================================
 ```{r}
 plot_2 <- geom_line(size = 5, alpha = 0.3)
+plot_2
 ```
 
-
-```{r}
-plot_2 
-#<- plot_2 +
-#scale_y_continuous(limits = c())
-```
-
-Visualisations, Bar Graph  
+Bar graph - Step 1
 ========================================================
 ```{r}
 melted_df_example_3 <- melt(df_example_3, id="year") 
 head(melted_df_example_3)
 ```
 
-Bar Graph  
+Bar graph - Step 2
 ========================================================
-class:small-code
-incremental:true
+
 ```{r}
 plot_3 <- ggplot(data = melted_df_example_3, 
                  aes(x = year, y = value))
+plot_3
 ```
+Bar graph - Step 3
+========================================================
 
 ```{r}
 plot_3 <- plot_3 + 
           geom_bar(stat = 'identity', aes(fill = variable))
+plot_3
 ```
+Bar graph - Step 4
+========================================================
 
 ```{r}
 plot_3 <- plot_3 + theme_gray()
+plot_3
 ```
+
+Bar graph - Step 5 & final
+========================================================
 
 ```{r}
 
@@ -923,30 +933,31 @@ plot_3 <- plot_3 +
                y = 'Total Births Per Woman', 
                title = 'Fertility Rate Total Births Per Woman Group by Country',
                fill = 'Country')
-```
-
-```{r}
 plot_3
 ```
 
-More Bar Graph  
+Another bar graph - Step 1
 ========================================================
-class:small-code
-incremental:true
 
 ```{r}
 plot_4 <- ggplot(data = melted_df_example_3, 
                  aes(x = year, y = value))
+plot_4
 ```
 
+Another bar graph - Step 2
+========================================================
 
 ```{r}
 plot_4 <- plot_4 + 
           geom_bar(stat="identity",
                    aes(fill = variable), 
                    width=.5, position = "dodge")
+plot_4
 
 ```
+Another bar graph - Step 3 & final!
+========================================================
 
 ```{r}
 plot_4 <- plot_4 +
@@ -954,9 +965,6 @@ plot_4 <- plot_4 +
                y = 'Total Births Per Woman', 
                title = 'Fertility Rate Total Births Per Woman Group by Country',
                fill = 'Country')
-```
-
-```{r}
-plot_4 
+plot_4
 ```
 

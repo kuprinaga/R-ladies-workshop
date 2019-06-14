@@ -2229,7 +2229,6 @@ wide_data %>%
 
 Visualisations, Melt the data! 
 ========================================================
-class:small-code
 incremental:true
 
 ```r
@@ -2247,87 +2246,191 @@ head(melted_df_example_7)
 6 2014  Finland 0.9322235
 ```
 
-Line Graph  
+Line Graph - Step 1
 ========================================================
 
 ```r
 plot_1 <- ggplot(data = melted_df_example_7, 
-                 aes(x = year, y = value, color = variable)) +
-           geom_line()
-
-plot_1 <- plot_1 + theme_bw()
-plot_1 <- plot_1 + labs(x = 'Year', 
-                        y = 'Life Expectancy Ratio', 
-                        title = '')
+                 aes(x = year, y = value, color = variable)) 
 plot_1
 ```
 
 ![plot of chunk unnamed-chunk-62](r_ladies_rpres-figure/unnamed-chunk-62-1.png)
 
-More Line Graph  
+Line Graph - Step 2
 ========================================================
 
 ```r
-plot_2 <- ggplot(df_example_2, 
-                       aes(x = year, y = avg_population_female)) +
-          geom_point(color = 'purple') + 
-          geom_line(size = 5, alpha = 0.3)
-
-plot_2 
+ plot_1 <- plot_1 + geom_line()
+plot_1
 ```
 
 ![plot of chunk unnamed-chunk-63](r_ladies_rpres-figure/unnamed-chunk-63-1.png)
 
+Line Graph - Step 3
+========================================================
+
+
 ```r
-#<- plot_2 +
-#scale_y_continuous(limits = c())
+plot_1 <- plot_1 + theme_bw()
+plot_1
 ```
 
-Visualisations, Bar Graph  
+![plot of chunk unnamed-chunk-64](r_ladies_rpres-figure/unnamed-chunk-64-1.png)
+
+Line Graph - Step 4 & final!
 ========================================================
 
 ```r
-melted_df_example_3 <- melt(df_example_3, id="year") 
-```
+plot_1 <- plot_1 + labs(x = 'Year', 
+                        y = 'Life Expectancy Ratio', 
+                        title = '')
 
-Bar Graph  
-========================================================
-
-```r
-plot_3 <- ggplot(data = melted_df_example_3, 
-                 aes(x = year, y = value)) +
-        geom_bar(stat = 'identity', aes(fill = variable))
-
-plot_3 <- plot_3 + 
-          theme_gray() +
-          labs(x = 'Year', 
-               y = 'Total Births Per Woman', 
-               title = 'Fertility Rate Total Births Per Woman Group by Country',
-               fill = 'Country')
-
-plot_3
+plot_1
 ```
 
 ![plot of chunk unnamed-chunk-65](r_ladies_rpres-figure/unnamed-chunk-65-1.png)
 
-More Bar Graph  
+More Line Graph - Step 1
 ========================================================
 
 ```r
+plot_2 <- ggplot(data = df_example_2, 
+                 aes(x = year, y = avg_population_female))
+plot_2
+```
+
+![plot of chunk unnamed-chunk-66](r_ladies_rpres-figure/unnamed-chunk-66-1.png)
+Second line graph - Step 2  
+========================================================
+
+```r
+plot_2 <- geom_point(color = 'purple') 
+plot_2
+```
+
+```
+geom_point: na.rm = FALSE
+stat_identity: na.rm = FALSE
+position_identity 
+```
+Second line graph - Step 3 & final!
+========================================================
+
+```r
+plot_2 <- geom_line(size = 5, alpha = 0.3)
+plot_2
+```
+
+```
+geom_line: na.rm = FALSE
+stat_identity: na.rm = FALSE
+position_identity 
+```
+
+Bar graph - Step 1
+========================================================
+
+```r
+melted_df_example_3 <- melt(df_example_3, id="year") 
+head(melted_df_example_3)
+```
+
+```
+  year variable value
+1 2014  Denmark  1.69
+2 2015  Denmark  1.71
+3 2016  Denmark  1.79
+4 2017  Denmark  1.79
+5 2018  Denmark    NA
+6 2014  Finland  1.71
+```
+
+Bar graph - Step 2
+========================================================
+
+
+```r
+plot_3 <- ggplot(data = melted_df_example_3, 
+                 aes(x = year, y = value))
+plot_3
+```
+
+![plot of chunk unnamed-chunk-70](r_ladies_rpres-figure/unnamed-chunk-70-1.png)
+Bar graph - Step 3
+========================================================
+
+
+```r
+plot_3 <- plot_3 + 
+          geom_bar(stat = 'identity', aes(fill = variable))
+plot_3
+```
+
+![plot of chunk unnamed-chunk-71](r_ladies_rpres-figure/unnamed-chunk-71-1.png)
+Bar graph - Step 4
+========================================================
+
+
+```r
+plot_3 <- plot_3 + theme_gray()
+plot_3
+```
+
+![plot of chunk unnamed-chunk-72](r_ladies_rpres-figure/unnamed-chunk-72-1.png)
+
+Bar graph - Step 5 & final
+========================================================
+
+
+```r
+plot_3 <- plot_3 +
+          labs(x = 'Year', 
+               y = 'Total Births Per Woman', 
+               title = 'Fertility Rate Total Births Per Woman Group by Country',
+               fill = 'Country')
+plot_3
+```
+
+![plot of chunk unnamed-chunk-73](r_ladies_rpres-figure/unnamed-chunk-73-1.png)
+
+Another bar graph - Step 1
+========================================================
+
+
+```r
 plot_4 <- ggplot(data = melted_df_example_3, 
-                 aes(x = year, y = value)) +
+                 aes(x = year, y = value))
+plot_4
+```
+
+![plot of chunk unnamed-chunk-74](r_ladies_rpres-figure/unnamed-chunk-74-1.png)
+
+Another bar graph - Step 2
+========================================================
+
+
+```r
+plot_4 <- plot_4 + 
           geom_bar(stat="identity",
-                   aes(fill = variable), width=.5, position = "dodge")  
-          
+                   aes(fill = variable), 
+                   width=.5, position = "dodge")
+plot_4
+```
+
+![plot of chunk unnamed-chunk-75](r_ladies_rpres-figure/unnamed-chunk-75-1.png)
+Another bar graph - Step 3 & final!
+========================================================
 
 
+```r
 plot_4 <- plot_4 +
           labs(x = 'Year', 
                y = 'Total Births Per Woman', 
                title = 'Fertility Rate Total Births Per Woman Group by Country',
                fill = 'Country')
-
 plot_4
 ```
 
-![plot of chunk unnamed-chunk-66](r_ladies_rpres-figure/unnamed-chunk-66-1.png)
+![plot of chunk unnamed-chunk-76](r_ladies_rpres-figure/unnamed-chunk-76-1.png)
+
