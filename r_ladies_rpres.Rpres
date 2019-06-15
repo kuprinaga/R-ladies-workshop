@@ -29,14 +29,17 @@ Who are we?
 
 ![Anastasia](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/seriously-portrait2016_Anastasia-1-300x330.jpg)
 
+#### Anastasia Kuprina
+- Studied International Business & Marketing in Finland
 - Has been doing data analysis since late 2016
-- Knows SQL, R and Python. Studying more Python & stats
-- Tries to improve diversity and inclusivity of tech by organising regular codebar workshops and other events
+- Skilled in SQL, R and Python. Studying more Python & stats
+- Organiser of codebar Helsinki events
 
 ***
 
 ![Hazel](https://ohjelmistoebusiness.fi/wp-content/uploads/2019/02/Hazel-Kavili-seriously-highres-2-300x330.jpg)
 
+#### Hazel Kavili
 - Studied Statistics (BSc and MSc) in Istanbul
 - Worked on word-puzzle games in Wixot for 1.5 years 
 - Founder of R-Ladies Istanbul
@@ -81,8 +84,22 @@ Data analysis workflow in our daily work
 <img src="./pics_for_presentation/seriously_map.png" width=800px>
 </div>
 
+
+Our data
+========================================================
+<div class = 'img-block' align="center">
+<img src="./pics_for_presentation/data.png" height=600px>
+</div>
+
+Data comes from the World Bank and is licenced under CC-BY 4.0 license. Original data: https://datacatalog.worldbank.org/dataset/gender-statistics
+
+No changes were made to the dataset other than filtering for non-missing data.
+
+To make this easier: https://github.com/kuprinaga/R-ladies-workshop
+
 Let's get to it!
 ========================================================
+incremental:true
 
 **Step 1**: Start up a new project in RStudio (File -> New project and follow the instructions)
 
@@ -104,7 +121,6 @@ library(reshape2)
 
 df <- readr::read_csv('https://raw.githubusercontent.com/kuprinaga/R-ladies-workshop/master/nordic_data.csv')
 ```
-
 
 Reading data in
 ========================================================
@@ -199,6 +215,7 @@ df %>%
 
 Why use pipes?
 ========================================================
+class: small-code
 Here are two pieces of code that return exactly the same thing. What do you think about their readability?
 
 
@@ -252,6 +269,11 @@ df %>%
 Exercise 1, step 3 + assignment
 ========================================================
 ```{r}
+df %>%
+  group_by(Country_Name) %>%
+  summarise(Life_expectancy = max(Life_expectancy_at_birth_female_years_, na.rm = TRUE)) %>%
+  arrange(desc(Life_expectancy))
+
 df_example_1 <- df %>%
   group_by(Country_Name) %>%
   summarise(Life_expectancy = max(Life_expectancy_at_birth_female_years_, na.rm = TRUE)) %>%
@@ -290,6 +312,11 @@ Exercise 2, step 3 + assignment
 ========================================================
 
 ```{r}
+df %>%
+  group_by(year) %>%
+  summarise(avg_population_female = mean(Population_female_of_total_)) %>%
+  arrange(desc(year))
+
 df_example_2 <- df %>%
   group_by(year) %>%
   summarise(avg_population_female = mean(Population_female_of_total_)) %>%
@@ -445,13 +472,12 @@ incremental:true
 
 ##### After spread():
 ```{r}
-## spread data:
 df %>% 
   top_n(20, year) %>% 
   group_by(Country_Name, year) %>%
   select(Fertility_rate_total_births_per_woman_) %>%
   spread(Country_Name, Fertility_rate_total_births_per_woman_)
-
+## ASSIGNMENT
 df_example_3 <- df %>% 
   top_n(20, year) %>% 
   group_by(Country_Name, year) %>%
@@ -587,9 +613,8 @@ wide_df <- df %>%
   spread(Country_Name, Inflation_consumer_prices_annual_) 
 ```
 
-#### Let's gather it back!
 
-Exercise 5, step 2
+Exercise 5, step 2 - gathering it back!
 ========================================================
 class:small-code
 incremental:true
@@ -753,6 +778,9 @@ df %>%
 Exercise 7, step 5 - and assignment
 ========================================================
 class:small-code
+
+#### Note how top_n() returns real 5 values now, no repetitions
+
 ```{r}
 df %>%
   mutate(life_exp_ratio = Life_expectancy_at_birth_male_years_/
@@ -764,7 +792,6 @@ df %>%
   spread(Country_Name, life_exp_ratio) %>%
   top_n(5, year)
 ```
-#### Note how top_n() returns real 5 values now, no repetitions
 
 ```{r}
 df_example_7 <- df %>%
@@ -831,26 +858,35 @@ wide_data %>%
   gather(year, val, -Country_Name)
 ```
 
-Visualisations, Melt the data! 
+Visualisations. Step 1: gather the data! 
 ========================================================
 incremental:true
 ```{r}
-melted_df_example_7 <- melt(df_example_7, id="year") 
-head(melted_df_example_7)
+df_example_7 %>%
+  head(2)
+```
+
+```{r}
+df_example_7 %>%
+  gather(variable, value, -year)
+
+long_df_example_7 <- df_example_7 %>%
+  gather(variable, value, -year)
 ```
 
 Line Graph - Step 1
 ========================================================
 ```{r}
-plot_1 <- ggplot(data = melted_df_example_7, 
-                 aes(x = year, y = value, color = variable)) 
+plot_1 <- ggplot(data = long_df_example_7) 
 plot_1
 ```
 
 Line Graph - Step 2
 ========================================================
 ```{r}  
- plot_1 <- plot_1 + geom_line()
+ plot_1 <- plot_1 + geom_line(aes(x = year, 
+                                  y = value, 
+                                  color = variable))
 plot_1
 ```  
 
@@ -872,7 +908,7 @@ plot_1 <- plot_1 + labs(x = 'Year',
 plot_1
 ```
 
-More Line Graph - Step 1
+Line & Point chart - Step 1
 ========================================================
 ```{r}
 plot_2 <- ggplot(data = df_example_2, 
@@ -882,28 +918,38 @@ plot_2
 Second line graph - Step 2  
 ========================================================
 ```{r}
-plot_2 <- geom_point(color = 'purple') 
+plot_2 <- plot_2 + geom_point(color = 'purple') 
 plot_2
 ```
 Second line graph - Step 3 & final!
 ========================================================
 ```{r}
-plot_2 <- geom_line(size = 5, alpha = 0.3)
+plot_2 <- plot_2 + geom_line(size = 5, alpha = 0.3)
 plot_2
 ```
 
-Bar graph - Step 1
+Bar graph - Step 1 - gather!
 ========================================================
+incremental:true
 ```{r}
-melted_df_example_3 <- melt(df_example_3, id="year") 
-head(melted_df_example_3)
+df_example_3 %>%
+  head(2)
+```
+
+```{r}
+df_example_3 %>%
+  gather(variable, value, -year)
+
+long_df_example_3 <- df_example_3 %>%
+  gather(variable, value, -year)
+
 ```
 
 Bar graph - Step 2
 ========================================================
 
 ```{r}
-plot_3 <- ggplot(data = melted_df_example_3, 
+plot_3 <- ggplot(data = long_df_example_3, 
                  aes(x = year, y = value))
 plot_3
 ```
@@ -940,7 +986,7 @@ Another bar graph - Step 1
 ========================================================
 
 ```{r}
-plot_4 <- ggplot(data = melted_df_example_3, 
+plot_4 <- ggplot(data = long_df_example_3, 
                  aes(x = year, y = value))
 plot_4
 ```
