@@ -15,9 +15,9 @@ Data from: https://datacatalog.worldbank.org/dataset/gender-statistics
 
 I recommend a few resources to refer to during & after learning:
 
-Cheatsheets: https://www.rstudio.com/resources/cheatsheets/
-TidyTuesday: https://github.com/rfordatascience/tidytuesday
-R for Data Science, the book: https://r4ds.had.co.nz/
+- Cheatsheets: https://www.rstudio.com/resources/cheatsheets/
+- TidyTuesday: https://github.com/rfordatascience/tidytuesday
+- R for Data Science, the book: https://r4ds.had.co.nz/
 
 Find us on Twitter:
 @Zofiathewitch
